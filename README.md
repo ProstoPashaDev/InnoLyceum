@@ -2,6 +2,7 @@
 
 <img src="docs/assets/Logo.png" alt="Logo" width="400"/>
 
+**Code is not allowed due to commercial use**
 
 **CMS-powered website for Innopolis Lyceum to attract applicants, share updates, and present school life.**
 
