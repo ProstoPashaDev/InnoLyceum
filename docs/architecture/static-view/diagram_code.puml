@@ -1,0 +1,29 @@
+@startuml
+
+component [Router]
+component [Django]
+component [Wagtail CMS]
+component [PostgreSQL connector]
+component [PostgreSQL]
+component [Redis connector]
+component [Redis]
+
+Router -right-( " "
+" " -right- Django 
+
+Django -right-( "  "
+"  " -right- [Wagtail CMS]
+
+[Wagtail CMS] -down-( "   "
+"   " -down- [PostgreSQL connector]
+
+[Wagtail CMS] -right-( "    "
+"    " -right- [Redis connector]
+
+[Redis connector] -right-( "     "
+"     " -right- Redis
+
+[PostgreSQL connector] -right-( "      "
+"      " -right- PostgreSQL
+
+@enduml

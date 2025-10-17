@@ -1,0 +1,27 @@
+title Events page upload
+
+participant User
+participant Wagtail
+participant Redis
+participant Postgres
+participant Django
+
+User->Wagtail:Click and redirect into events page\nor type site.com/events in a browser
+Wagtail->Redis:Ask information <<cache>>
+Wagtail<--Redis:Return the information succesfully
+User<--Wagtail:If this page <<cache>> exists
+note over Wagtail,Redis:If it is **not**
+Wagtail->Postgres:Load information from database
+Wagtail<--Postgres:Return the info
+Wagtail->Redis:Load information into cache
+Wagtail<--Redis:Return the successful response
+User<--Wagtail:Return the <<info>>
+User->Django: Ask for AJAX events list
+Django->Redis: Ask for AJAX events list <<cache>>
+Django<--Redis: Return events list <<cache>>
+note over Redis,Django:If <<cache>> does **not** exists
+Django->Postgres: Ask for AJAX events list
+Django<--Postgres: Return events list 
+Django->Redis: Save events list <<cache>>
+Django<--Redis: Return succesful message
+User<--Django: Return AJAX events list
